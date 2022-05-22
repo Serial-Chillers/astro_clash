@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       onGenerateRoute: CustomRouter.onGenerateRoute,
-      initialRoute: NavScreen.routeName,
+      initialRoute: CompsScreen.routeName,
     );
     // MultiRepositoryProvider(
     //   providers: [

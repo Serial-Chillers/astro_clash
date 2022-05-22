@@ -1,7 +1,7 @@
 import 'dart:developer';
-
-import 'package:astro_clash/screens/nav/nav_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../screens/screens.dart';
 
 class CustomRouter {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -15,6 +15,8 @@ class CustomRouter {
         );
       case NavScreen.routeName:
         return NavScreen.route();
+      case CompsScreen.routeName:
+        return CompsScreen.route();
       default:
         return _errorRoute();
     }
