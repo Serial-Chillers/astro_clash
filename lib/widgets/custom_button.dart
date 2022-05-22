@@ -7,6 +7,7 @@ import '../theme/theme.dart';
 enum Status {
   primary,
   secondary,
+  warning,
 }
 
 Map<Status, Theming> theming = {
@@ -21,6 +22,12 @@ Map<Status, Theming> theming = {
     iconColor: const Color(0xff22252D),
     disabledIconColor: CustomTheme.neutral[5],
     textStyle: secondaryTextStyle,
+  ),
+  Status.warning: Theming(
+    buttonStyle: warningBtnStyle,
+    iconColor: const Color(0xff22252D),
+    disabledIconColor: CustomTheme.neutral[5],
+    textStyle: warningTextStyle,
   ),
 };
 
@@ -66,7 +73,7 @@ class CustomButton extends StatelessWidget {
                 ? theming[status]!.textStyle
                 : theming[status]!
                     .textStyle!
-                    .copyWith(color: Colors.grey.shade500),
+                    .copyWith(color: CustomTheme.neutral[5]),
           ),
           if (trailing != null)
             Padding(
@@ -86,20 +93,21 @@ class CustomButton extends StatelessWidget {
 }
 
 final ButtonStyle primaryBtnStyle = ButtonStyle(
-    padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
-    minimumSize: MaterialStateProperty.all(const Size(120, 56)),
-    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(12), // <-- Radius
-    )),
-    // primary: CustomTheme.redColor,
-    backgroundColor:
-        MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-      if (states.contains(MaterialState.disabled)) {
-        return CustomTheme.neutral[4];
-      }
-      return CustomTheme.redColor;
-    }),
-    elevation: MaterialStateProperty.all(0));
+  padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+  minimumSize: MaterialStateProperty.all(const Size(120, 56)),
+  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12), // <-- Radius
+  )),
+  // primary: CustomTheme.redColor,
+  backgroundColor:
+      MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+    if (states.contains(MaterialState.disabled)) {
+      return CustomTheme.neutral[4];
+    }
+    return CustomTheme.redColor;
+  }),
+  elevation: MaterialStateProperty.all(0),
+);
 
 final ButtonStyle secondaryBtnStyle = ButtonStyle(
     padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
@@ -109,7 +117,7 @@ final ButtonStyle secondaryBtnStyle = ButtonStyle(
     )),
     side: MaterialStateProperty.resolveWith((Set<MaterialState> states) {
       if (states.contains(MaterialState.disabled)) {
-        return BorderSide(width: 2, color: Colors.grey.shade400);
+        return BorderSide(width: 2, color: CustomTheme.neutral[4]!);
       }
       return const BorderSide(width: 2, color: Color(0xff7F8596));
     }),
@@ -119,6 +127,25 @@ final ButtonStyle secondaryBtnStyle = ButtonStyle(
     }),
     elevation: MaterialStateProperty.all(0));
 
+final ButtonStyle warningBtnStyle = ButtonStyle(
+  padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+  minimumSize: MaterialStateProperty.all(const Size(200, 56)),
+  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12), // <-- Radius
+  )),
+  // primary: CustomTheme.redColor,
+  backgroundColor:
+      MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+    if (states.contains(MaterialState.disabled)) {
+      return CustomTheme.neutral[4];
+    }
+    return const Color(0xFFFEDBD6);
+  }),
+  elevation: MaterialStateProperty.all(0),
+);
+
 final TextStyle primaryTextStyle = CustomTheme.base1;
 final TextStyle secondaryTextStyle =
     CustomTheme.base1.copyWith(color: const Color(0xff22252D));
+final TextStyle warningTextStyle =
+    CustomTheme.base1.copyWith(color: const Color(0xffD2311B));

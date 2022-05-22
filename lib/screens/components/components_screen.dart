@@ -69,6 +69,12 @@ class CompsScreen extends StatelessWidget {
                 trailing: Icons.arrow_forward,
                 status: Status.secondary,
               ),
+              const Text('Warning'),
+              CustomButton(
+                label: 'Button',
+                status: Status.warning,
+                onPressed: () {},
+              ),
             ],
           ),
         ),
